@@ -20,3 +20,10 @@ jobs:
       run: |
         sudo apt-get install libreadline-dev
         cc -I$HOME/.nix-profile/include -lreadline -Wall -shared -fpic elisp-repl-readline.c -o elisp-repl-readline.so
+    - name: Byte compile
+      run: |
+        emacs -Q --batch -L . --eval "(setq byte-compile-error-on-warn t)" -f batch-byte-compile *.el
+    - name: Test
+      run: |
+        echo '(+ 1 2)' | emacs -Q --batch -L . -l elisp-repl -f elisp-repl
+    # IDEA: Install e2ansi and test again
