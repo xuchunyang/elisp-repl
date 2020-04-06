@@ -22,7 +22,7 @@ Compile module:
 cc -lreadline -shared -fpic elisp-repl-readline.c -o elisp-repl-readline.so
 ```
 
-Install [`e2ansi`]https://github.com/Lindydancer/e2ansi:
+Install [`e2ansi`](https://github.com/Lindydancer/e2ansi):
 
     M-x package-install e2ansi
 
@@ -34,9 +34,9 @@ Prepare `load-path`:
 
 Load `elisp-repl.el`:
 
-    M-x load-library elisp-repl`
+    M-x load-library elisp-repl
 
-Get the shell command to to run the repl:
+Get the shell command to to run the REPL:
 
     M-x elisp-repl-emacs-batch-command
 
@@ -44,7 +44,7 @@ Goto your terminal, paste the shell command, and run it.
 
 ## Customization
 
-The following user options are available, use `C-h f` to see more info.
+The following user options are available, `C-h f` to see more info.
 
 - `elisp-repl-prompt`
 - `elisp-repl-lexical-binding`
