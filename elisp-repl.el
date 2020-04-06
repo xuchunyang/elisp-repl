@@ -55,10 +55,17 @@
 
 (defcustom elisp-repl-history-file (pcase "~/.elisp_repl_history"
                                      ((and (pred file-exists-p) f) f))
-  "The history file used by Readline.
-It must be either a full file path or nil.
+  "History file used by Readline.
+It must be either a full file path (including directory) or nil.
 If it is a path and not exists, it will be created automatically.
 If it is nil, don't save history to file."
+  :type '(choice (const :tag "Disable" nil)
+                 (file :tag "Full file path")))
+
+(defcustom elisp-init-file nil
+  "User init file used by `elisp-repl'.
+It must be either an existing full file path (including directory) or nil.
+If nil, don't load init file."
   :type '(choice (const :tag "Disable" nil)
                  (file :tag "Full file path")))
 
@@ -139,6 +146,8 @@ All readline feature is NOT available."
 Must be called from batch mode."
   (unless noninteractive
     (user-error "`elisp-repl' is to be used in batch mode"))
+  (when elisp-init-file
+    (load-file elisp-init-file))
   (when (and elisp-repl-real-term-p
              (not (fboundp 'e2ansi-print-buffer)))
     (message "[WARNNING] `e2ansi' is not loaded, will not use syntax highlighting"))
