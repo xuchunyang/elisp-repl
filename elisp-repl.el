@@ -62,7 +62,8 @@ If it is nil, don't save history to file."
   :type '(choice (const :tag "Disable" nil)
                  (file :tag "Full file path")))
 
-(defcustom elisp-init-file nil
+(defcustom elisp-init-file (pcase "~/.elisp_init.el"
+                             ((and (pred file-exists-p) f) f))
   "User init file used by `elisp-repl'.
 It must be either an existing full file path (including directory) or nil.
 If nil, don't load init file."
