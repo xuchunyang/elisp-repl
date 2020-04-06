@@ -1,0 +1,21 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        emacs_version:
+          - 26.3
+          - snapshot
+    steps:
+    - uses: purcell/setup-emacs@master
+      with:
+        version: ${{ matrix.emacs_version }}
+
+    - uses: actions/checkout@v2
+    - name: Build the dynamic module
+      run: |
+        cc -I$HOME/.nix-profile/include -lreadline -Wall -shared -fpic elisp-repl-readline.c -o elisp-repl-readline.so
