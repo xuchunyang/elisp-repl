@@ -19,7 +19,7 @@ Compile module:
 
 ``` shell
 # change .so to the value of your module-file-suffix
-cc -lreadline -shared -fpic elisp-repl-readline.c -o elisp-repl-readline.so
+cc -shared -fpic -lreadline elisp-repl-readline.c -o elisp-repl-readline.so
 ```
 
 Install [`e2ansi`](https://github.com/Lindydancer/e2ansi):
