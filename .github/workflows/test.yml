@@ -16,9 +16,11 @@ jobs:
         version: ${{ matrix.emacs_version }}
 
     - uses: actions/checkout@v2
+    - name: Install readline
+      run: |
+        sudo apt-get install libreadline7 libreadline-dev
     - name: Build the dynamic module
       run: |
-        sudo apt-get install libreadline-dev
         cc -I$HOME/.nix-profile/include -lreadline -Wall -shared -fpic elisp-repl-readline.c -o elisp-repl-readline.so
     - name: Byte compile
       run: |
