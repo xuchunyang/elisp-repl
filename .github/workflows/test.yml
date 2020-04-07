@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install readline
       run: |
-        sudo apt-get install libreadline7 libreadline-dev
+        sudo apt-get install libreadline-dev
     - name: Build the dynamic module
       run: |
         cc -I$HOME/.nix-profile/include -Wall -shared -fpic -lreadline elisp-repl-readline.c -o elisp-repl-readline.so
